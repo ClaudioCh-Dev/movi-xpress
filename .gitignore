@@ -77,3 +77,14 @@ src/main/resources/application-dev.yaml
 *.tar
 docker/
 .docker
+
+# SSL Certificates
+*.crt
+*.pem
+*.key
+*.csr
+*.der
+*.p12
+cert/
+certs/
+ssl/
