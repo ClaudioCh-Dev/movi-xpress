@@ -87,6 +87,31 @@
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<script>
+		document.querySelector('form').addEventListener('submit', function(e) {
+			// HTML5 validation check
+			if (!this.checkValidity()) {
+				// If form is invalid, let the browser show validation errors
+				// and do not show the loading spinner
+				return;
+			}
+			
+			const btn = this.querySelector('button[type="submit"]');
+			const originalContent = btn.innerHTML;
+			
+			// Change button state
+			btn.disabled = true;
+			btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Cargando...';
+			
+			// If for some reason the submit is prevented elsewhere or takes too long without navigating,
+			// we might want to restore it, but for a login form, navigation is expected.
+			// We submit the form manually because disabling the button might prevent submission if done before the event propagates?
+			// Actually, inside a submit handler, disabling the button doesn't stop the current submission 
+			// IF the event has already started. But to be safe and standard:
+			// We just let the event bubble up. The browser submits the form.
+		});
+	</script>
 </body>
 
 </html>
