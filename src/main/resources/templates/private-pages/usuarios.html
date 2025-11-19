@@ -100,7 +100,8 @@
 									</button>
 
 									<a href="#" class="btn btn-sm btn-danger btn-eliminar me-1"
-									          th:data-title="'¿Estás seguro de que deseas eliminar a ' + ${u.nombre} + '?'"
+									          th:unless="${nombreUsuario == u.nomUsuario}"
+											  th:data-title="'¿Estás seguro de que deseas eliminar a ' + ${u.nombre} + '?'"
 									          th:data-text="'Esta acción no se puede deshacer'"
 									          th:data-icon="warning"
 											  th:data-id="${u.id}">

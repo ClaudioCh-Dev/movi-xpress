@@ -73,3 +73,7 @@ src/main/resources/application-dev.yml
 src/main/resources/application-dev.yaml
 
 .metadata/
+
+*.tar
+docker/
+.docker
