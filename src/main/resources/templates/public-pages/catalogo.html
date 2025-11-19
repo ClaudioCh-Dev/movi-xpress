@@ -24,20 +24,39 @@
     .btn-brand {
       background-color: #dc3545;
       color: white;
+      border: none;
+      transition: all 0.3s ease;
     }
 
     .btn-brand:hover {
       background-color: #bb2d3b;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
     }
 
     .card-dark {
-      background-color: #000000 !important;
+      background-color: #1a1a1a !important;
       color: #f1f1f1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #333;
+    }
+    
+    .card-dark:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      border-color: #dc3545;
     }
 
     .page-link {
       background-color: transparent;
       border: 1px solid #dc3545;
+      color: #dc3545;
+    }
+    
+    .page-link:hover {
+      background-color: rgba(220, 53, 69, 0.1);
+      color: #dc3545;
+      border-color: #dc3545;
     }
 
     .page-item.active .page-link {
@@ -48,23 +67,52 @@
 
     .form-control,
     .form-select {
-      background-color: rgb(128, 128, 128);
+      background-color: #2a2a2a;
+      border: 1px solid #444;
       color: white;
+    }
+    
+    .form-control:focus,
+    .form-select:focus {
+      background-color: #2a2a2a;
+      border-color: #dc3545;
+      color: white;
+      box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
     }
 
     .form-control::placeholder {
-      color: #ccc;
+      color: #888;
     }
 
     .form-floating > label {
-      color: #bbb;
+      color: #aaa;
+    }
+    
+    .form-floating > .form-control:focus ~ label,
+    .form-floating > .form-control:not(:placeholder-shown) ~ label {
+      color: #dc3545;
+      background-color: transparent; 
     }
 
     h3 {
-      color: #dc3545;
+      color: #fff;
+      position: relative;
+      display: inline-block;
     }
+    
+    h3::after {
+      content: '';
+      display: block;
+      width: 50%;
+      height: 3px;
+      background: #dc3545;
+      margin-top: 5px;
+      border-radius: 2px;
+    }
+    
 	.sidebar{
-		background-color: #000000 !important;
+		background-color: #0a0a0a !important;
+		border-right: 1px solid #333 !important;
 	}
   </style>
 </head>
@@ -74,68 +122,123 @@
     <div class="row g-0">
 
       <!-- Sidebar Fijo -->
-      <div class="col-md-3 bg-dark text-white border-end min-vh-100 sidebar">
-        <div class="position-sticky top-0 p-4">
-          <h5 class="text-light mb-3">
-            <i class="bi bi-funnel-fill me-2"></i>Filtros
+      <div class="col-lg-3 col-xl-2 bg-dark text-white sidebar d-none d-lg-block">
+        <div class="position-sticky top-0 p-4" style="z-index: 100; height: 100vh; overflow-y: auto;">
+          <h5 class="text-light mb-4 d-flex align-items-center">
+            <i class="bi bi-sliders me-2 text-brand"></i>Filtros
           </h5>
-          <form th:action="@{/catalogo}" method="get" class="vstack gap-3">
+          <form th:action="@{/catalogo}" method="get" class="vstack gap-4">
 
             <div class="form-floating">
-              <input type="text" name="nombre" class="form-control border-0" id="nombreInput"
+              <input type="text" name="nombre" class="form-control rounded-3" id="nombreInput"
                      placeholder="Buscar por nombre" th:value="${param.nombre}">
-              <label for="nombreInput"><i class="bi bi-search"></i> Nombre</label>
+              <label for="nombreInput"><i class="bi bi-search me-1"></i> Modelo</label>
             </div>
 
-            <div class="d-flex gap-2">
-              <div class="form-floating w-50">
-                <input type="number" name="precioMin" class="form-control border-0" id="minInput"
-                       placeholder="Mínimo" th:value="${param.precioMin}">
-                <label for="minInput">S/. Mín</label>
-              </div>
-              <div class="form-floating w-50">
-                <input type="number" name="precioMax" class="form-control border-0" id="maxInput"
-                       placeholder="Máximo" th:value="${param.precioMax}">
-                <label for="maxInput">S/. Máx</label>
+            <div>
+              <label class="form-label text-white-50 small text-uppercase fw-bold ls-1">Rango de Precio</label>
+              <div class="d-flex gap-2">
+                <div class="form-floating w-50">
+                  <input type="number" name="precioMin" class="form-control rounded-3" id="minInput"
+                         placeholder="Mínimo" th:value="${param.precioMin}">
+                  <label for="minInput">Min</label>
+                </div>
+                <div class="form-floating w-50">
+                  <input type="number" name="precioMax" class="form-control rounded-3" id="maxInput"
+                         placeholder="Máximo" th:value="${param.precioMax}">
+                  <label for="maxInput">Max</label>
+                </div>
               </div>
             </div>
 
             <div>
-              <label class="form-label fw-bold text-white">Marca</label>
-              <select name="marcaId" class="form-select border-0">
-                <option value="">Todas</option>
+              <label class="form-label text-white-50 small text-uppercase fw-bold ls-1">Marca</label>
+              <select name="marcaId" class="form-select rounded-3 py-3">
+                <option value="">Todas las marcas</option>
                 <option th:each="marca : ${marcas}" th:value="${marca.id}" th:text="${marca.marca}"
                         th:selected="${param.marcaId == marca.id}"></option>
               </select>
             </div>
 
-            <button type="submit" class="btn btn-brand w-100 rounded-pill">
-              <i class="bi bi-funnel me-1"></i> Aplicar filtros
+            <button type="submit" class="btn btn-brand w-100 rounded-pill py-2 fw-bold mt-2">
+              Aplicar filtros
             </button>
+            
+            <a href="/catalogo" class="btn btn-outline-secondary w-100 rounded-pill py-2 btn-sm">
+              Limpiar
+            </a>
           </form>
+        </div>
+      </div>
+      
+      <!-- Botón flotante para filtros en móvil -->
+      <div class="d-lg-none p-3 bg-dark border-bottom border-secondary sticky-top" style="top: 56px; z-index: 99;">
+        <button class="btn btn-outline-light w-100" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilters">
+          <i class="bi bi-funnel-fill me-2"></i> Filtrar Vehículos
+        </button>
+      </div>
+
+      <!-- Offcanvas Filtros Móvil -->
+      <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasFilters">
+        <div class="offcanvas-header border-bottom border-secondary">
+          <h5 class="offcanvas-title">Filtros</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+           <!-- Mismo formulario que sidebar (simplificado para demo, idealmente usar fragmento) -->
+           <form th:action="@{/catalogo}" method="get" class="vstack gap-4">
+             <!-- ... campos ... -->
+             <div class="form-floating">
+               <input type="text" name="nombre" class="form-control rounded-3" placeholder="Buscar" th:value="${param.nombre}">
+               <label>Modelo</label>
+             </div>
+             <!-- ... resto de campos ... -->
+             <button type="submit" class="btn btn-brand w-100 rounded-pill">Aplicar</button>
+           </form>
         </div>
       </div>
 
       <!-- Contenido derecho -->
-      <div class="col-md-9 p-4 bg-dark">
+      <div class="col-lg-9 col-xl-10 p-4 p-lg-5 bg-black">
         <!-- Título -->
-        <h3 class="mb-4 text-center fw-bold">Vehículos disponibles para alquiler</h3>
+        <div class="d-flex justify-content-between align-items-center mb-5">
+           <h3 class="fw-bold m-0">Catálogo de Vehículos</h3>
+           <span class="text-white-50" th:text="${vehiculos.totalElements + ' vehículos encontrados'}"></span>
+        </div>
 
         <!-- Tarjetas -->
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 g-4">
           <div th:each="vehiculo : ${vehiculos}" class="col">
-            <div class="card card-dark shadow-sm border-0 rounded-4 h-100">
-              <img th:src="${vehiculo.foto}" class="card-img-top rounded-top-4" alt="Imagen vehículo"
-                   style="height: 180px; object-fit: cover;"
+            <div class="card card-dark h-100 rounded-4 overflow-hidden position-relative">
+              <!-- Badge de precio -->
+              <div class="position-absolute top-0 end-0 m-3 z-1">
+                 <span class="badge bg-danger rounded-pill px-3 py-2 shadow">S/ <span th:text="${vehiculo.precioXDia}"></span> / día</span>
+              </div>
+              
+              <div class="overflow-hidden" style="height: 200px;">
+                 <img th:src="${vehiculo.foto}" class="card-img-top w-100 h-100" alt="Imagen vehículo"
+                   style="object-fit: cover; transition: transform 0.5s ease;"
+                   onmouseover="this.style.transform='scale(1.1)'"
+                   onmouseout="this.style.transform='scale(1)'"
                    onerror="this.onerror=null; this.src='/images/default-car.png';">
-              <div class="card-body">
-                <h5 class="card-title fw-bold" th:text="${vehiculo.modelo}"></h5>
-                <p class="card-text small mb-1">
-                  <strong>Marca:</strong> <span th:text="${vehiculo.objMarca.marca}"></span>
-                </p>
-                <p class="card-text small">
-                  <strong>Precio x Día:</strong> S/ <span th:text="${vehiculo.precioXDia}"></span>
-                </p>
+              </div>
+              
+              <div class="card-body d-flex flex-column p-4">
+                <div class="mb-2">
+                   <span class="badge bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-25 rounded-1" th:text="${vehiculo.objMarca.marca}"></span>
+                </div>
+                <h5 class="card-title fw-bold mb-3 text-white" th:text="${vehiculo.modelo}"></h5>
+                
+                <div class="row g-2 mb-4 text-white-50 small">
+                   <div class="col-6"><i class="bi bi-fuel-pump me-1 text-brand"></i> Gasolina</div>
+                   <div class="col-6"><i class="bi bi-gear me-1 text-brand"></i> Automático</div>
+                   <div class="col-6"><i class="bi bi-people me-1 text-brand"></i> 5 Pasajeros</div>
+                   <div class="col-6"><i class="bi bi-speedometer2 me-1 text-brand"></i> Ilimitado</div>
+                </div>
+                
+                <div class="mt-auto">
+                   <a href="#" class="btn btn-outline-light w-100 rounded-pill hover-bg-brand">Ver Detalles</a>
+                </div>
               </div>
             </div>
           </div>
@@ -146,14 +249,14 @@
           <nav th:if="${vehiculos.totalPages > 1}">
             <ul class="pagination pagination-lg">
               <li class="page-item" th:classappend="${vehiculos.first} ? 'disabled'">
-                <a class="page-link text-brand" th:href="@{/catalogo(page=${vehiculos.number - 1}, ...)}">«</a>
+                <a class="page-link" th:href="@{/catalogo(page=${vehiculos.number - 1}, ...)}"><i class="bi bi-chevron-left"></i></a>
               </li>
               <li class="page-item" th:each="i : ${#numbers.sequence(0, vehiculos.totalPages - 1)}"
                   th:classappend="${i == vehiculos.number} ? 'active'">
-                <a class="page-link text-brand" th:href="@{/catalogo(page=${i}, ...)}" th:text="${i + 1}"></a>
+                <a class="page-link" th:href="@{/catalogo(page=${i}, ...)}" th:text="${i + 1}"></a>
               </li>
               <li class="page-item" th:classappend="${vehiculos.last} ? 'disabled'">
-                <a class="page-link text-brand" th:href="@{/catalogo(page=${vehiculos.number + 1}, ...)}">»</a>
+                <a class="page-link" th:href="@{/catalogo(page=${vehiculos.number + 1}, ...)}"><i class="bi bi-chevron-right"></i></a>
               </li>
             </ul>
           </nav>
