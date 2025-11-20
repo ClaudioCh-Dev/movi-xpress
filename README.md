@@ -73,9 +73,13 @@ Copy the file and rename it to:
 .env
 ```
 
-Fill your Cloudinary credentials:
+Fill in your Cloudinary and database settings:
 
 ```properties
+SPRING_DATASOURCE_URL=jdbc:mysql://YOUR_DB_HOST:YOUR_DB_PORT/YOUR_DB_NAME?createDatabaseIfNotExist=true
+SPRING_DATASOURCE_USERNAME=YOUR_DB_USERNAME
+SPRING_DATASOURCE_PASSWORD=YOUR_DB_PASSWORD
+
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
@@ -145,5 +149,6 @@ $2a$12$UXW2hk4pCL9LlyAUTBsaf.R3EF.NjIL8/X9YN4fld22WjMV15tnrS
 ```
 
 ---
+
 
 
