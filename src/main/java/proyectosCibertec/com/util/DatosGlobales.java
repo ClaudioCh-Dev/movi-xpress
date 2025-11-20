@@ -13,34 +13,34 @@ import proyectosCibertec.com.security.UsuarioDetailsSession;
 
 @ControllerAdvice
 public class DatosGlobales {
-	
-	 @ModelAttribute
-	    public void logRequest(HttpServletRequest request) {
-	        System.out.println("🔍 Accediendo a: " + request.getRequestURI());
-	    }
+
+    @ModelAttribute
+    public void logRequest(HttpServletRequest request) {
+        System.out.println("Accediendo a: " + request.getRequestURI());
+    }
 
     @ModelAttribute
     public void agregarUsuarioAlModelo(Model model, HttpServletRequest request) {
-    	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-         if (auth != null && auth.getPrincipal() instanceof UsuarioDetailsSession) {
-             UsuarioDetailsSession userDetails = (UsuarioDetailsSession) auth.getPrincipal();
+        if (auth != null && auth.getPrincipal() instanceof UsuarioDetailsSession) {
+            UsuarioDetailsSession userDetails = (UsuarioDetailsSession) auth.getPrincipal();
 
-             String foto = userDetails.getUsuario().getPerfil();
-             String nombre = userDetails.getUsuario().getNomUsuario();
+            String foto = userDetails.getUsuario().getPerfil();
+            String nombre = userDetails.getUsuario().getNomUsuario();
 
-             String rol = userDetails.getAuthorities().stream()
-                     .map(GrantedAuthority::getAuthority)
-                     .findFirst()
-                     .orElse("SIN_ROL");
+            String rol = userDetails.getAuthorities().stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .findFirst()
+                    .orElse("SIN_ROL");
 
-             model.addAttribute("fotoUsuario", foto);
-             model.addAttribute("nombreUsuario", nombre);
-             model.addAttribute("rolUsuario", rol);
-             
-          // Extrae la URI actual para marcar el menú activo
-             String uri = request.getRequestURI();
-             model.addAttribute("currentUri", uri);
-         }
+            model.addAttribute("fotoUsuario", foto);
+            model.addAttribute("nombreUsuario", nombre);
+            model.addAttribute("rolUsuario", rol);
+
+            // Extrae la URI actual para marcar el menú activo
+            String uri = request.getRequestURI();
+            model.addAttribute("currentUri", uri);
+        }
     }
 }

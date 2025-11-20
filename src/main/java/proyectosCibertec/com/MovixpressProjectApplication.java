@@ -12,14 +12,13 @@ public class MovixpressProjectApplication {
 
 	public static void main(String[] args) {
 
-		// Solo cargar .env si NO estás en producción (ej. Railway)
+		// Se carga .env en caso no esté en produccion
 		if (System.getenv("RAILWAY_ENVIRONMENT_NAME") == null) {
 			Dotenv dotenv = Dotenv.configure()
-					.ignoreIfMissing() // <- evita errores si .env no existe
+					.ignoreIfMissing()
 					.filename(".env")
 					.load();
 
-			// Puedes setear propiedades si lo necesitas (opcional)
 			System.setProperty("SPRING_DATASOURCE_URL", dotenv.get("SPRING_DATASOURCE_URL"));
 			System.setProperty("SPRING_DATASOURCE_USERNAME", dotenv.get("SPRING_DATASOURCE_USERNAME"));
 			System.setProperty("SPRING_DATASOURCE_PASSWORD", dotenv.get("SPRING_DATASOURCE_PASSWORD"));
