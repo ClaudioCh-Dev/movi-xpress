@@ -69,7 +69,7 @@ INSERT INTO clientes (dni, nombre, telefono, direccion) VALUES
 
 -- Configuración
 INSERT INTO configuracion (ruc, nombre, telefono, correo, direccion, mensaje, logo, moneda, impuesto, cant_factura, penalidad_por_dia)
-VALUES ('12345678901', 'Mi Empresa S.A.C.', '012345678', 'empresa@correo.com', 'Av. Principal 123', '¡Gracias por su preferencia!', 'logo.png', 1, 18, 1000, 10.00);
+VALUES ('20604816123', 'MoviXpress S.A.C.', '928012312', 'movixpress@rental.net', 'Av. Uruguay 514, Breña', '¡Gracias por su preferencia!', 'logo.png', 1, 18, 1000, 10.00);
 
 -- Vehículos
 INSERT INTO vehiculos (placa, id_marca, id_tipo, modelo, foto, precio_por_dia) VALUES
