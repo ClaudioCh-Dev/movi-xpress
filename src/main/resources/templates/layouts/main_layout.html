@@ -10,18 +10,18 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	<style>
 		body {
-			background-color: #f4f6f9;
+			background-color: #f8fafc;
 			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		}
 		
-		/* Sidebar */
+		/* ========== SIDEBAR ========== */
 		.sidebar {
 			width: 280px;
 			height: 100vh;
 			position: fixed;
 			top: 0;
 			left: 0;
-			background-color: #212529;
+			background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
 			color: #fff;
 			transition: all 0.3s;
 			z-index: 1000;
@@ -29,43 +29,138 @@
 		}
 		
 		.sidebar-header {
-			padding: 1rem;
-			background-color: #1a1d20;
-			border-bottom: 1px solid #343a40;
+			padding: 1.5rem 1rem;
+			background-color: rgba(15, 23, 42, 0.6);
+			border-bottom: 1px solid rgba(148, 163, 184, 0.1);
 		}
-		
-		/* Main Content */
+
+		.sidebar-header a {
+			padding: 0.5rem;
+			border-radius: 8px;
+			transition: all 0.3s ease;
+		}
+
+		.sidebar-header a:hover {
+			background: rgba(59, 130, 246, 0.1);
+		}
+
+		/* Tarjeta de Datos Personales - MEJORADA */
+		.sidebar a[href="/usuario/perfil"] {
+			background: rgba(59, 130, 246, 0.1) !important;
+			border: 1px solid rgba(59, 130, 246, 0.3) !important;
+			transition: all 0.3s ease;
+			backdrop-filter: blur(10px);
+			border-radius: 12px !important;
+		}
+
+		.sidebar a[href="/usuario/perfil"]:hover {
+			background: rgba(59, 130, 246, 0.15) !important;
+			border-color: rgba(59, 130, 246, 0.5) !important;
+			transform: translateX(4px);
+		}
+
+		/* Enlaces de navegación mejorados */
+		.sidebar .nav-link {
+			border-radius: 8px;
+			margin-bottom: 4px;
+			transition: all 0.2s ease;
+			color: #cbd5e1 !important;
+			padding: 0.75rem 1rem;
+		}
+
+		.sidebar .nav-link:hover {
+			background-color: rgba(59, 130, 246, 0.15) !important;
+			color: #fff !important;
+			transform: translateX(4px);
+		}
+
+		.sidebar .nav-link.active {
+			background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%) !important;
+			color: #fff !important;
+			font-weight: 600;
+			box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+		}
+
+		/* Submenús mejorados */
+		.btn-toggle-nav .nav-link {
+			padding: 0.625rem 1rem;
+			font-size: 0.9rem;
+		}
+
+		/* Iconos de chevron con animación */
+		.nav-link[data-bs-toggle="collapse"] .bi-chevron-down {
+			transition: transform 0.3s ease;
+		}
+
+		.nav-link[data-bs-toggle="collapse"]:not(.collapsed) .bi-chevron-down {
+			transform: rotate(180deg);
+		}
+
+		/* Scrollbar del sidebar personalizado */
+		.sidebar::-webkit-scrollbar {
+			width: 6px;
+		}
+		.sidebar::-webkit-scrollbar-track {
+			background: rgba(15, 23, 42, 0.3);
+		}
+		.sidebar::-webkit-scrollbar-thumb {
+			background: rgba(148, 163, 184, 0.3);
+			border-radius: 3px;
+		}
+		.sidebar::-webkit-scrollbar-thumb:hover {
+			background: rgba(148, 163, 184, 0.5);
+		}
+
+		/* ========== MAIN CONTENT ========== */
 		.main-content {
 			margin-left: 280px;
 			transition: all 0.3s;
 		}
 		
-		/* Header */
+		/* ========== HEADER ========== */
 		.top-header {
-			background-color: #fff;
-			box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
-			padding: 0.8rem 1.5rem;
+			background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+			padding: 1rem 1.5rem;
 			position: sticky;
 			top: 0;
 			z-index: 999;
+			border-bottom: 1px solid #e2e8f0;
+		}
+
+		/* Badge mejorado */
+		.badge.bg-success {
+			background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+			padding: 0.35rem 0.65rem;
+			font-weight: 500;
+			box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+		}
+
+		/* Dropdown usuario */
+		.dropdown-toggle::after {
+			transition: transform 0.3s ease;
+		}
+
+		.dropdown.show .dropdown-toggle::after {
+			transform: rotate(180deg);
 		}
 		
-		/* Scrollbar */
+		/* ========== SCROLLBAR GENERAL ========== */
 		::-webkit-scrollbar {
 			width: 8px;
 		}
 		::-webkit-scrollbar-track {
-			background: #f1f1f1;
+			background: #f1f5f9;
 		}
 		::-webkit-scrollbar-thumb {
-			background: #888;
+			background: #94a3b8;
 			border-radius: 4px;
 		}
 		::-webkit-scrollbar-thumb:hover {
-			background: #555;
+			background: #64748b;
 		}
 
-		/* Loader Styles */
+		/* ========== LOADER STYLES ========== */
 		#loader-overlay {
 			position: fixed;
 			top: 0;
@@ -104,6 +199,21 @@
 			opacity: 0;
 			pointer-events: none;
 		}
+
+		/* ========== RESPONSIVE ========== */
+		@media (max-width: 768px) {
+			.sidebar {
+				transform: translateX(-100%);
+			}
+			
+			.sidebar.show {
+				transform: translateX(0);
+			}
+			
+			.main-content {
+				margin-left: 0;
+			}
+		}
 	</style>
 </head>
 
@@ -117,19 +227,18 @@
 	<!-- Sidebar -->
 	<nav class="sidebar">
 		<div class="sidebar-header">
-			<!-- Original Logo Link -->
 			<a href="/" class="d-flex align-items-center mb-0 text-white text-decoration-none fs-4 fw-bold">
 				<img src="\images\movixpressfull-logo.svg" alt="Logo MoviXpress" style="max-height: 40px;" class="mb-2">
 			</a>
 		</div>
 		
 		<div class="p-3">
-			<!-- Original User Profile Link in Sidebar -->
+			<!-- User Profile Card - MEJORADO -->
 			<a href="/usuario/perfil"
-				class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none bg-info p-2 rounded">
+				class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none p-2">
 				<img th:src="@{${fotoUsuario}}" class="rounded-circle me-2" alt="Foto" width="32" height="32"
 					onerror="this.onerror=null; this.src='/images/default-user.png';">
-				<span class="fs-4">Datos personales</span>
+				<span class="fs-6">Datos personales</span>
 			</a>
 
 			<ul class="nav nav-pills flex-column mb-auto mt-3">
@@ -144,20 +253,20 @@
 					</a>
 					<div class="collapse ps-3" id="adminSubmenu" th:classappend="${#strings.contains(currentUri, '/usuarios') or #strings.contains(currentUri, '/monedas') or #strings.contains(currentUri, '/configuracion')} ? 'show'">
 						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-							<li><a href="/usuarios/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/usuarios')} ? 'fw-bold active'"><i
+							<li><a href="/usuarios/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/usuarios')} ? 'active'"><i
 										class="bi bi-people me-2"></i>Usuarios</a></li>
-							<li><a href="/monedas/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/monedas')} ? 'fw-bold active'"><i
+							<li><a href="/monedas/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/monedas')} ? 'active'"><i
 										class="bi bi-currency-exchange me-2"></i>Monedas</a></li>
-							<li><a href="/configuracion/" class="nav-link text-white"th:classappend="${#strings.contains(currentUri, '/configuracion')} ? 'fw-bold active'"><i
+							<li><a href="/configuracion/" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/configuracion')} ? 'active'"><i
 										class="bi bi-sliders me-2"></i>Configuración</a></li>
 						</ul>
 					</div>
 				</li>
 
-				<li><a href="/clientes/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/clientes')} ? 'fw-bold active'"><i
-							class="bi bi-person-lines-fill me-2" ></i>Clientes</a></li>
-				<li><a href="/documentos/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/documentos')} ? 'fw-bold active'"><i
-							class="bi bi-file-earmark-text me-2" ></i>Documentos</a></li>
+				<li><a href="/clientes/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/clientes')} ? 'active'"><i
+							class="bi bi-person-lines-fill me-2"></i>Clientes</a></li>
+				<li><a href="/documentos/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/documentos')} ? 'active'"><i
+							class="bi bi-file-earmark-text me-2"></i>Documentos</a></li>
 
 				<!-- Vehículos con ícono desplegable -->
 				<li>
@@ -170,17 +279,17 @@
 					<div class="collapse ps-3" id="vehiculosSubmenu"
 					th:classappend="${#strings.contains(currentUri, '/marcas') or #strings.contains(currentUri, '/tipos') or #strings.contains(currentUri, '/vehiculos')} ? 'show'">
 						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-							<li><a href="/marcas/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/marcas')} ? 'fw-bold active'"><i
-										class="bi bi-badge-ad me-2" ></i>Marcas</a></li>
-							<li><a href="/tipos/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/tipos')} ? 'fw-bold active'"><i
-										class="bi bi-tags me-2" ></i>Tipos</a></li>
-							<li><a href="/vehiculos/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/vehiculos')} ? 'fw-bold active'"><i
-										class="bi bi-car-front me-2" ></i>Vehículos</a></li>
+							<li><a href="/marcas/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/marcas')} ? 'active'"><i
+										class="bi bi-badge-ad me-2"></i>Marcas</a></li>
+							<li><a href="/tipos/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/tipos')} ? 'active'"><i
+										class="bi bi-tags me-2"></i>Tipos</a></li>
+							<li><a href="/vehiculos/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/vehiculos')} ? 'active'"><i
+										class="bi bi-car-front me-2"></i>Vehículos</a></li>
 						</ul>
 					</div>
 				</li>
 
-				<li><a href="/alquiler/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/alquiler')} ? 'fw-bold active'"><i
+				<li><a href="/alquiler/listado" class="nav-link text-white" th:classappend="${#strings.contains(currentUri, '/alquiler')} ? 'active'"><i
 							class="bi bi-calendar-check me-2"></i>Alquiler de Vehículos</a></li>
 				<li><a href="#" class="nav-link text-white"><i class="bi bi-clipboard-data me-2"></i>Reporte
 						Préstamo</a></li>
@@ -195,13 +304,12 @@
 			<h5 class="m-0 text-secondary fw-bold">Panel de Control</h5>
 			
 			<div class="d-flex align-items-center gap-3">
-				<!-- Original Header Profile Dropdown -->
 				<div class="dropdown text-end">
 					<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
 						id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 						<span class="badge me-2 bg-success">En línea</span>
 						<img th:src="@{${fotoUsuario}}" class="rounded-circle me-2" alt="Foto" width="32"
-							height="32">
+							height="32" onerror="this.onerror=null; this.src='/images/default-user.png';">
 					</a>
 					<ul class="dropdown-menu dropdown-menu-dark text-small" aria-labelledby="dropdownUser1">
 						<li><a class="dropdown-item" href="/usuario/perfil">Profile</a></li>
@@ -241,7 +349,8 @@
 			title: 'Mensaje',
 			text: '[[${mensaje}]]',
 			confirmButtonColor: '#dc3545'
-		});</script>
+		});
+	</script>
 		
 	<script th:src="@{/js/sweet-alert-confirmation.js}" defer></script>
 
