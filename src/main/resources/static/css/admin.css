@@ -1,0 +1,162 @@
+/* ==========================================
+  Estilos globales del Panel Administrativo
+   Sidebar, Header, Dropdown, Main Area
+============================================= */
+
+/* ----------- Estilo general ----------- */
+.admin-body {
+  background-color: #f8fafc;
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+}
+
+/* ----------- Sidebar ----------- */
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  color: white;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar-header {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Perfil Sidebar */
+.sidebar a[href="/usuario/perfil"] {
+  padding: 0.6rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  transition: 0.2s ease;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar a[href="/usuario/perfil"]:hover {
+  transform: translateX(4px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Links */
+.sidebar .nav-link {
+  padding: 0.75rem 1rem;
+  color: #cbd5e1 !important;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  transition: 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+  color: white !important;
+  background: rgba(59, 130, 246, 0.15);
+  transform: translateX(4px);
+}
+
+.sidebar .nav-link.active {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  color: white !important;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(59, 130, 246, 0.25);
+}
+
+/* Submenú */
+.btn-toggle-nav .nav-link {
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+}
+
+/* Scrollbar */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+/* ----------- Main ----------- */
+.main-content {
+  margin-left: 280px;
+  padding-bottom: 50px;
+  transition: all 0.3s ease;
+}
+
+/* ----------- Top Header ----------- */
+.top-header {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+}
+
+/* Estado online */
+.badge-online {
+  background: #10b981 !important;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.75rem;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+/* Imagen Usuario */
+.header-user-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: 0.2s ease;
+}
+
+.header-user-img:hover {
+  transform: scale(1.05);
+}
+
+/* ----------- Dropdown ----------- */
+.dropdown-menu {
+  opacity: 0;
+  transform: translateY(4px);
+  visibility: hidden;
+  transition: all 0.15s ease;
+  border-radius: 10px !important;
+  padding: 0.4rem 0;
+}
+
+.dropdown-menu.show {
+  opacity: 1 !important;
+  transform: translateY(10px) !important;
+  visibility: visible !important;
+}
+
+.dropdown {
+  position: relative;
+}
+
+/* ----------- Responsive ----------- */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+}
