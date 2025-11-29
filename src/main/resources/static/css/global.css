@@ -35,6 +35,40 @@ img.default-car {
   content: url("/images/default-car.png");
 }
 
+/* Loader Overlay */
+#loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.loader-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Spinner */
+#loader-overlay .loader {
+  width: 55px;
+  height: 55px;
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ff5166;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Scrollbar global */
 ::-webkit-scrollbar {
   width: 8px;

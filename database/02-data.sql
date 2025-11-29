@@ -99,16 +99,16 @@ INSERT INTO kilometrajes (tipo) VALUES
 
 -- Vehículos
 INSERT INTO vehiculos (placa, id_marca, id_tipo, modelo, foto, precio_por_dia, id_combustible, id_transmision, id_capacidad, id_kilometraje) VALUES
-('AAA111', 1, 1, 'Corolla', 'https://res-console.cloudinary.com/drrlway38/thumbnails/v1/image/upload/v1751315161/dmlzdGEtZGVsLWNvY2hlLTNkX2MydHo3aQ==/preview', 100, 1, 2, 2, 1),
-('BBB222', 2, 2, 'Tucson', 'https://res-console.cloudinary.com/drrlway38/thumbnails/v1/image/upload/v1751315161/dmlzdGEtZGVsLWNvY2hlLTNkX2MydHo3aQ==/preview', 120, 2, 1, 2, 1),
-('CCC333', 3, 3, 'Silverado', 'https://res-console.cloudinary.com/drrlway38/thumbnails/v1/image/upload/v1751315161/dmlzdGEtZGVsLWNvY2hlLTNkX2MydHo3aQ==/preview', 150, 1, 2, 2, 3),
-('DDD444', 4, 4, 'March', 'https://res-console.cloudinary.com/drrlway38/thumbnails/v1/image/upload/v1751315161/dmlzdGEtZGVsLWNvY2hlLTNkX2MydHo3aQ==/preview', 90, 2, 1, 3, 1),
-('EEE555', 5, 5, 'Mustang', 'https://res-console.cloudinary.com/drrlway38/thumbnails/v1/image/upload/v1751315161/dmlzdGEtZGVsLWNvY2hlLTNkX2MydHo3aQ==/preview', 200, 1, 2, 4, 1),
-('FFF666', 6, 6, 'Rio', 'https://res-console.cloudinary.com/drrlway38/thumbnails/v1/image/upload/v1751315161/dmlzdGEtZGVsLWNvY2hlLTNkX2MydHo3aQ==/preview', 80, 3, 2, 2, 1),
-('GGG777', 7, 7, 'Golf', 'https://res-console.cloudinary.com/drrlway38/thumbnails/v1/image/upload/v1751315161/dmlzdGEtZGVsLWNvY2hlLTNkX2MydHo3aQ==/preview', 110, 4, 1, 4, 1),
-('HHH888', 8, 8, 'CX-5', 'https://res-console.cloudinary.com/drrlway38/thumbnails/v1/image/upload/v1751315161/dmlzdGEtZGVsLWNvY2hlLTNkX2MydHo3aQ==/preview', 130, 4, 2, 2, 2),
-('III999', 9, 9, 'Civic', 'https://res-console.cloudinary.com/drrlway38/thumbnails/v1/image/upload/v1751315161/dmlzdGEtZGVsLWNvY2hlLTNkX2MydHo3aQ==/preview', 105, 1, 1, 1, 3),
-('JJJ000', 10, 10, 'Swift', 'https://res-console.cloudinary.com/drrlway38/thumbnails/v1/image/upload/v1751315161/dmlzdGEtZGVsLWNvY2hlLTNkX2MydHo3aQ==/preview', 95, 2, 2, 5, 2);
+('AAA111', 1, 1, 'Corolla', 'https://res.cloudinary.com/drwtssrej/image/upload/v1763579423/vehiculos/mphkyunobnplak4okplr.jpg', 100, 1, 2, 2, 1),
+('BBB222', 2, 2, 'Tucson', 'https://res.cloudinary.com/drwtssrej/image/upload/v1763579464/vehiculos/dak2oy4wppknlnvf2dzb.jpg', 120, 2, 1, 2, 1),
+('CCC333', 3, 3, 'Silverado', 'https://res.cloudinary.com/drwtssrej/image/upload/v1763579555/vehiculos/qzhspt2ebc9jzlhapmzh.jpg', 150, 1, 2, 2, 3),
+('DDD444', 4, 4, 'March', 'https://res.cloudinary.com/drwtssrej/image/upload/v1763579653/vehiculos/il4oqzufnqd4t5qitivw.jpg', 90, 2, 1, 3, 1),
+('EEE555', 5, 5, 'Mustang', 'https://res.cloudinary.com/drwtssrej/image/upload/v1763579690/vehiculos/s9zzcttn8ic5gn0cfelb.jpg', 200, 1, 2, 4, 1),
+('FFF666', 6, 6, 'Rio', 'https://res.cloudinary.com/drwtssrej/image/upload/v1763579715/vehiculos/cc78fqf6zp26vmxijswc.jpg', 80, 3, 2, 2, 1),
+('GGG777', 7, 7, 'Golf', 'https://res.cloudinary.com/drwtssrej/image/upload/v1763579755/vehiculos/fzf9tbn02bqxr3f2evt4.jpg', 110, 4, 1, 4, 1),
+('HHH888', 8, 8, 'CX-5', 'https://res.cloudinary.com/drwtssrej/image/upload/v1763579783/vehiculos/ohtk0qa4yjrmrzypo6tk.jpg', 130, 4, 2, 2, 2),
+('III999', 9, 9, 'Civic', 'https://res.cloudinary.com/drwtssrej/image/upload/v1763579811/vehiculos/gvp4zx6f3x9dlww8elee.jpg', 105, 1, 1, 1, 3),
+('JJJ000', 10, 10, 'Swift', 'https://res.cloudinary.com/drwtssrej/image/upload/v1763579835/vehiculos/byayqlcjlcqhj7tdxqbk.jpg', 95, 2, 2, 5, 2);
 
 -- Alquileres
 INSERT INTO alquiler (id_cliente, id_vehiculo, id_moneda, num_dias, precio_dia, abono, fecha_prestamo, hora, fecha_estimada_devolucion, id_doc, observacion, estado, penalidad_por_dia)

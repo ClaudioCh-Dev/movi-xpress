@@ -4,6 +4,6 @@ window.addEventListener("load", () => {
     loader.classList.add("loader-hidden");
 
     setTimeout(() => {
-        loader.remove();
+        loader.style.display = "none";
     }, 300);
 });
