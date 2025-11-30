@@ -94,8 +94,8 @@ INSERT INTO capacidades (cantidad) VALUES
 -- Kilometrajes
 INSERT INTO kilometrajes (tipo) VALUES
 ('Ilimitado'),
-('100 km/día'),
-('200 km/día');
+('100km/día'),
+('200km/día');
 
 -- Vehículos
 INSERT INTO vehiculos (placa, id_marca, id_tipo, modelo, foto, precio_por_dia, id_combustible, id_transmision, id_capacidad, id_kilometraje) VALUES
